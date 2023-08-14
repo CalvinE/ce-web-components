@@ -1,0 +1,25 @@
+{
+  "name": "ce-web-components",
+  "version": "0.1.0",
+  "description": "A collection of web components.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalvinE/ce-web-components.git"
+  },
+  "keywords": [
+    "web-components"
+  ],
+  "author": "Calvin Echols",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CalvinE/ce-web-components/issues"
+  },
+  "homepage": "https://github.com/CalvinE/ce-web-components#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
