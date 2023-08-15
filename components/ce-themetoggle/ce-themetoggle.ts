@@ -1,6 +1,10 @@
-if (!document.getElementById("toggle-theme-template")) {
+/**
+ * Like a C include guard. 
+ * If the element is already registered we don't want to try and register it again...
+ */
+if (!document.getElementById("ce-themetoggle-template")) {
     const template = document.createElement('template')
-    template.id = "toggle-theme-template"
+    template.id = "ce-themetoggle-template"
     const templateText =
         `
         <style>
@@ -61,6 +65,10 @@ if (!document.getElementById("toggle-theme-template")) {
     document.body.appendChild(template);
 }
 
+/**
+ * Like a C include guard. 
+ * If the element is already registered we don't want to try and register it again...
+ */
 if (!customElements.get("ce-themetoggle")) {
     class ThemeToggle extends HTMLElement {
 
@@ -84,7 +92,7 @@ if (!customElements.get("ce-themetoggle")) {
             this.checkboxElement = null;
             this.toggleContainerElement = null;
             this.toggleKnobElement = null;
-            const template = document.getElementById("toggle-theme-template");
+            const template = document.getElementById("ce-themetoggle-template");
             const templateContent = (template as HTMLTemplateElement).content;
 
             this.attachShadow(
@@ -104,46 +112,83 @@ if (!customElements.get("ce-themetoggle")) {
             ];
         }
 
+        /**
+         * The attribute name that is used to specify the target of the theme toggle component.
+         */
         static get targetSelectorAttrName() {
             return "data-target-selector";
         }
 
+        /**
+         * The attribute name that is used to specify as an override to set the current theme on load.
+         */
         static get currentThemeAttrName() {
             return "data-current-theme";
         }
 
+        /**
+         * The attribute name that is used to specify the color to apply to this toggle when light mode is applied.
+         */
         static get lightColorAttrName() {
             return "data-light-color";
         }
 
+        /**
+         * The attribute name that is used to specify the  color to apply to this toggle when dark mode is applied.
+         */
         static get darkColorAttrName() {
             return "data-dark-color";
         }
 
+        /**
+         * The attribute name that is used to specify the height of this component on screen.
+         * All other dimensions like the size of the toggle knob or event the width of the whole component are calculated based on this value.
+         * A default is provided in the HTML template.
+         */
         static get toggleHeightAttrName() {
             return "data-toggle-height";
         }
 
+        /**
+         * The name use to represent dark mode. Really just here to avoid typos ;-)
+         */
         static get darkThemeName() {
             return "dark";
         }
 
+        /**
+         * The name use to represent light mode. Really just here to avoid typos ;-)
+         */
         static get lightThemeName() {
             return "light";
         }
 
+        /**
+         * The name of the value in local storage to save theme preference.
+         */
         private static get themePreferenceName() {
             return "ce-themetoggle-theme-preference";
         }
 
+        /**
+         * Tells us the default theme.
+         * TODO: make this configurable...
+         */
         static get defaultTheme() {
             return ThemeToggle.darkThemeName
         }
 
+        /**
+         * Tells us the alternate theme.
+         * TODO: derive based on default theme.
+         */
         static get secondaryTheme() {
             return ThemeToggle.lightThemeName
         }
 
+        /**
+         * Handles setting everything up when the node is attached to the dom.
+         */
         connectedCallback() {
             // handle checkbox stuff
             this.checkboxElement = (this.shadowRoot?.querySelector("input.theme-toggle") as HTMLInputElement | null);
@@ -185,6 +230,12 @@ if (!customElements.get("ce-themetoggle")) {
             this.handleTargetChange("", this.targetSelectorAttr, true);
         }
 
+        /**
+         * This is triggered any time an attribute is added / changed if it is in the static array observedAttributes in this class.
+         * @param {string} name The name of the attribute
+         * @param {string} oldValue The previous value of the attribute
+         * @param {string} newValue The new value of the attribute
+         */
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
             console.log('Toggle theme element attributes changed.', { name, oldValue, newValue });
             switch (name) {
@@ -265,5 +316,6 @@ if (!customElements.get("ce-themetoggle")) {
         }
     }
 
+    // Register the web component so we can use it.
     customElements.define("ce-themetoggle", ThemeToggle);
 }

@@ -8,4 +8,4 @@ If you can use please enjoy!
 
 |name|description|
 |-----|-----|
-|`ce-themetoggle`|A simple toggle that sets the `data-current-theme` attribute on the single element selected by the `data-target-selector` to either `light` or `dark`. Using CSS selectors like `[data-current-theme="dark"]` or `[data-current-theme="light"]`|
+|`ce-themetoggle`|A simple toggle that sets the `data-current-theme` attribute on the single element selected by the `data-target-selector` to either `light` or `dark`. Using CSS selectors like `[data-current-theme="dark"]` or `[data-current-theme="light"]`.
