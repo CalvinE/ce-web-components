@@ -232,9 +232,9 @@ if (!customElements.get("ce-themetoggle")) {
 
         /**
          * This is triggered any time an attribute is added / changed if it is in the static array observedAttributes in this class.
-         * @param {string} name The name of the attribute
-         * @param {string} oldValue The previous value of the attribute
-         * @param {string} newValue The new value of the attribute
+         * @param name The name of the attribute
+         * @param oldValue The previous value of the attribute
+         * @param newValue The new value of the attribute
          */
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
             console.log('Toggle theme element attributes changed.', { name, oldValue, newValue });
@@ -264,14 +264,28 @@ if (!customElements.get("ce-themetoggle")) {
             }
         }
 
+        /**
+         * Sets the users theme preference in the users local storage.
+         * @param theme The theme to set as the preference in the users local storage.
+         */
         private setThemePreference(theme: string) {
             window.localStorage.setItem(ThemeToggle.themePreferenceName, theme)
         }
 
+        /**
+         * Gets the current theme preference from local storage if set. Otherwise returns null.
+         */
         private getThemePreference(): string | null {
             return window.localStorage.getItem(ThemeToggle.themePreferenceName)
         }
 
+        /**
+         * Handles the target selector change. First it removes the theme attribute from the current target, then applies to the new target.
+         * @param oldValue The old selector. Used to get the old target and remove our theme attribute
+         * @param newValue The new target to apply the theme to
+         * @param force Used when component first mounts to bypass the repeat theme check
+         * @returns 
+         */
         private handleTargetChange(oldValue: string, newValue: string, force: boolean = false) {
             if (this.targetSelectorAttr === newValue && !force) {
                 return;
@@ -287,7 +301,14 @@ if (!customElements.get("ce-themetoggle")) {
             this.setAttribute(ThemeToggle.targetSelectorAttrName, newValue);
         }
 
-        private handleThemeChange(_: string, newValue: string, force: boolean = false) {
+        /**
+         * Handler for when the theme changes. Updates targets with the new theme
+         * @param _oldValue Not used. thought I might log the old value... I have not...
+         * @param newValue The new theme value.
+         * @param force Used when component first mounts to bypass the repeat theme check
+         * @returns {undefined}
+         */
+        private handleThemeChange(_oldValue: string, newValue: string, force: boolean = false) {
             if (this.currentThemeAttr === newValue && !force) {
                 return;
             }
