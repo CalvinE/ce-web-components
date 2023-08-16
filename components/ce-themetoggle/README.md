@@ -9,52 +9,56 @@ The local storage theme preference key is `ce-themetoggle-theme-preference`
 ## Example usage
 
 ```html
-<html>
-    <head>
-        <style>
-            :root {
-                --light-color: #000000;
-                --light-accent-color: #826f10;
-                --light-off-color: #e5e5e5;
-                --light-background-color: #ffffff;
+<!DOCTYPE html>
+<html lang="en">
 
-                --dark-color: #ffffff;
-                --dark-accent-color: #fcda1f;
-                --dark-off-color: #24292e;
-                --dark-background-color: #000000;
-            }
+<head>
+    <style>
+        :root {
+            --light-color: #000000;
+            --light-accent-color: #826f10;
+            --light-off-color: #e5e5e5;
+            --light-background-color: #ffffff;
 
-            /* We default to dark mode... Because we are civilized */
-            [data-current-theme="dark"] {
-                --color: var(--dark-color);
-                --accent-color: var(--dark-accent-color);
-                --off-color: var(--dark-off-color);
-                --background-color: var(--dark-background-color);
-            }
+            --dark-color: #ffffff;
+            --dark-accent-color: #fcda1f;
+            --dark-off-color: #24292e;
+            --dark-background-color: #000000;
+        }
 
-            [data-current-theme="light"] {
-                --color: var(--light-color);
-                --accent-color: var(--light-accent-color);
-                --off-color: var(--light-off-color);
-                --background-color: var(--light-background-color);
-            }
+        /* We default to dark mode... Because we are civilized */
+        [data-current-theme="dark"] {
+            --color: var(--dark-color);
+            --accent-color: var(--dark-accent-color);
+            --off-color: var(--dark-off-color);
+            --background-color: var(--dark-background-color);
+        }
 
-            body {
-                color: var(--color);
-                background-color: var(--background-color);
-            }
+        [data-current-theme="light"] {
+            --color: var(--light-color);
+            --accent-color: var(--light-accent-color);
+            --off-color: var(--light-off-color);
+            --background-color: var(--light-background-color);
+        }
 
-            span {
-                color: var(--accent-color);
-            }
-        </style>
-        <!-- import built JS file or use some bundler to import the TS file! -->
-        <script type="text/javascript" src="build/ce-themetoggle.js">
-    </head>
-    <body>
-        <p>Hello <span>ce-themetoggle</span></p>
-        <ce-themetoggle >
-    </body>
+        body {
+            color: var(--color);
+            background-color: var(--background-color);
+        }
+
+        span {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+    <p>Hello <span>ce-themetoggle</span></p>
+    <ce-themetoggle />
+    <!-- import built JS file or use some bundler to import the TS file! -->
+    <script type="text/javascript" src="../../build/ce-themetoggle.js"></script>
+</body>
+
 </html>
 ```
 

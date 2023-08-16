@@ -102,6 +102,9 @@ if (!customElements.get("ce-themetoggle")) {
             ).appendChild(templateContent.cloneNode(true));
         }
 
+        /**
+         * This is a list of attributes that when modified will trigger the attributeChangedCallback
+         */
         static get observedAttributes() {
             return [
                 ThemeToggle.targetSelectorAttrName,
